@@ -1,11 +1,21 @@
-const API_KEY = "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";
+const API_KEY = "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";
 
 
+
+var image = document.createElement("img");
 //Appends image
 
 setTimeout(function() {
+
+    var a = chrome.runtime.getURL("style.css");
+    var link = document.createElement("link");
+    link.href = a;
+    link.type = "text/css";
+    link.rel = "stylesheet";
+    console.log(link);
+    document.getElementsByTagName("head")[0].appendChild(link);
+
     let textarea = document.querySelector('.up-textarea');
-    var image = document.createElement("img");
     image.src = chrome.runtime.getURL("image.png");
     image.width = 20;
     image.height = 20;
@@ -28,10 +38,12 @@ function answer(element){
     let prompt = "Write me a cover letter for a job with the following description: " + getJobDescription();
     console.log(prompt)
     let response = " ";
+    image.classList.add("loading");
     openAi(prompt).then(function(data){
         response = data;
         textArea = document.querySelector(".up-textarea");
         textArea.value = response;
+        image.classList.remove("loading");
 
     });
 
@@ -74,7 +86,7 @@ async function openAi(question){
         } else {
             const data = await response.json();
             console.log(createResponse(data));
-            return removeTwoLines(createResponse(data));
+            return removeHiringManager(removeTwoLines(createResponse(data))) ;
         }
     } catch (error) {
         console.error("ERROR something broke: " + error);
@@ -83,6 +95,10 @@ async function openAi(question){
 
 function removeTwoLines(str){
     return str.replace(/^.*\n.*\n/,'');
+}
+
+function removeHiringManager(str){
+    return str.replace(/\[Hiring Manager\]/g, "Hiring Manager");
 }
 function removePeriod(json) {
     json.forEach(function (element, index) {

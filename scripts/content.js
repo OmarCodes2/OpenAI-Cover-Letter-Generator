@@ -1,14 +1,21 @@
-const API_KEY = "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";
+const API_KEY = "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";
 
 
 //Appends image
 
 setTimeout(function() {
-    var label = document.getElementById("cover_letter_label");
-    console.log(label.innerText);
+    let textarea = document.querySelector('.up-textarea');
     var button = document.createElement("button");
     button.innerHTML = "Click Me";
-    label.parentNode.insertBefore(button, label.nextSibling);
+
+    let div = document.createElement('div');
+    div.style.position = 'absolute';
+    div.style.top = '55px';
+    div.style.right = '35px';
+    div.appendChild(button);
+
+    textarea.parentNode.insertBefore(div, textarea.nextSibling);
+
     button.addEventListener('click', function(event){
         answer(event.currentTarget)
     });

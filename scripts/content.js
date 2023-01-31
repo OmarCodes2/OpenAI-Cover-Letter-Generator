@@ -5,23 +5,23 @@ const API_KEY = "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";
 
 setTimeout(function() {
     let textarea = document.querySelector('.up-textarea');
-    var button = document.createElement("button");
-    button.innerHTML = "Click Me";
-
+    var image = document.createElement("img");
+    image.src = chrome.runtime.getURL("image.png");
+    image.width = 20;
+    image.height = 20;
     let div = document.createElement('div');
     div.style.position = 'absolute';
     div.style.top = '55px';
     div.style.right = '35px';
-    div.appendChild(button);
+    div.appendChild(image);
 
     textarea.parentNode.insertBefore(div, textarea.nextSibling);
 
-    button.addEventListener('click', function(event){
+    image.addEventListener('click', function(event){
         answer(event.currentTarget)
     });
   }, 4000);
 
-setTimeout();
 
 //retreives job description 
 function answer(element){

@@ -1,9 +1,27 @@
-const API_KEY = "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";
+const API_KEY = "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";
 
+
+
+
+gapi.load('auth2', function() {
+    gapi.auth2.init({
+      client_id: '537334404087-tdc8oogt7n87us6lj0msk7obflnh3ls6.apps.googleusercontent.com',
+      scope: 'profile'
+    });
+  
+    gapi.auth2.getAuthInstance().signIn({
+      prompt: 'login'
+    }).then(function(user) {
+      console.log('Signed in as ' + user.getBasicProfile().getName());
+    });
+});
 
 
 var image = document.createElement("img");
 //Appends image
+
+
+
 
 setTimeout(function() {
 

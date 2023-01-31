@@ -2,6 +2,16 @@
     "manifest_version": 3,
     "name": "Prolancify",
     "description": "Triple your income today by supercharging your upwork game with AI.",
+    "action": {
+      "default_popup": "signin.html"
+    },
+    "oauth2" : {
+      "client_id" : "537334404087-tdc8oogt7n87us6lj0msk7obflnh3ls6.apps.googleusercontent.com",
+      "scopes" : ["https://www.googleapis.com/auth/contacts.readonly","https://www.googleapis.com/auth/userinfo.email"]
+    },
+    "permissions" : [
+      "identity"
+    ],
     "version": "1.0",
     "icons": {
       "16": "image.png",
